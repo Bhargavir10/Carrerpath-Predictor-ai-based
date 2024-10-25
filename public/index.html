@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Based Career Pathway Predictor</title>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    /* General Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(270deg, #0f1116, #010c48, #1f2428);
+      background-size: 400% 400%;
+      animation: backgroundAnimation 10s ease infinite;
+      margin: 0;
+      padding: 0;
+    }
+
+    @keyframes backgroundAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #e8e2e9;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .scaleA {
+      width: 100%;
+      max-width: 600px;
+      display: block;
+      margin: 20px auto; /* Space between image and text */
+      border-radius: 10px;
+    }
+
+    fieldset {
+      border: 1px solid #dddddd;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #f9f9f9;
+    }
+
+    legend {
+      padding: 0 10px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .radio-group {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .radio-group label {
+      margin-right: 15px;
+    }
+
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>AI-Based Career Pathway Predictor</h1>
+
+    <img src="https://mypersonalrecruiter.com/wp-content/uploads/2024/01/16-1024x576.png" class="scaleA" alt="Career Pathway Predictor Image">
+
+    <form id="career-form">
+      <!-- Personal Background Section -->
+      <fieldset>
+        <legend>Personal Background</legend>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+
+        <label for="location">Preferred Location (optional):</label>
+        <input type="text" id="location" name="location" placeholder="e.g., New York">
+
+        <label for="education-level">Education Level:</label>
+        <select id="education-level" name="education-level" required>
+            <option value="">Select</option>
+            <option value="High School">High School</option>
+            <option value="UnderGraduate">UnderGraduate</option>
+            <option value="PostGraduate">PostGraduate</option>
+            <option value="PhD">PhD</option>
+        </select>
+
+        <label for="degrees">Degrees:</label>
+        <input type="text" id="degrees" name="degrees" required>
+
+        <label for="certifications">Certifications:</label>
+        <input type="text" id="certifications" name="certifications" placeholder="e.g., PMP, AWS Certified">
+
+        <label for="subject-interest">Subject of Interest:</label>
+        <input type="text" id="subject-interest" name="subject-interest" required>
+
+        <label for="courses-attended">Courses Attended:</label>
+        <input type="text" id="courses-attended" name="courses-attended">
+    </fieldset>
+
+    <!-- Employment Status Section -->
+    <fieldset>
+        <legend>Employment Status</legend>
+        <label>Are you currently employed?</label>
+        <div class="radio-group">
+            <label>
+                <input type="radio" name="employed" value="yes" required> Yes
+            </label>
+            <label>
+                <input type="radio" name="employed" value="no"> No
+            </label>
+        </div>
+
+        <div id="employment-details" class="conditional-section">
+            <div>
+                <label for="current-role">Current Role:</label>
+                <input type="text" id="current-role" name="current-role">
+            </div>
+            <div>
+                <label for="current-experience">Current Experience (years):</label>
+                <input type="number" id="current-experience" name="current-experience" step="0.1">
+            </div>
+            <div>
+                <label for="past-roles">Past Job Roles:</label>
+                <textarea id="past-roles" name="past-roles" rows="3" placeholder="List your previous roles"></textarea>
+            </div>
+            <div>
+                <label for="achievements">Achievements:</label>
+                <textarea id="achievements" name="achievements" rows="3" placeholder="List your achievements"></textarea>
+            </div>
+            <div>
+                <label for="industries-worked">Industries Worked In:</label>
+                <textarea id="industries-worked" name="industries-worked" rows="3" placeholder="e.g., IT, Finance"></textarea>
+            </div>
+            <div>
+                <label for="role-length">Length of Experience in Each Role:</label>
+                <textarea id="role-length" name="role-length" rows="3" placeholder="e.g., Role - 2 years"></textarea>
+            </div>
+        </div>
+
+        <div id="unemployment-details" class="conditional-section">
+            <div>
+                <label for="gap-study">Gap of Study (months):</label>
+                <input type="number" id="gap-study" name="gap-study">
+            </div>
+            <div>
+                <label for="gpa">GPA:</label>
+                <input type="number" id="gpa" name="gpa" step="0.01" placeholder="e.g., 3.5">
+            </div>
+            <div>
+                <label for="academic-achievements">Academic Achievements:</label>
+                <textarea id="academic-achievements" name="academic-achievements" rows="3" placeholder="e.g.,Volunteer, Awards, Research Projects"></textarea>
+            </div>
+        </div>
+    </fieldset>
+
+    <!-- Skills Section -->
+    <fieldset>
+        <legend>Skills</legend>
+        <label for="hard-skills">Hard Skills:</label>
+        <textarea id="hard-skills" name="hard-skills" rows="3" placeholder="e.g.,Programming languages, App development"></textarea>
+
+        <label for="soft-skills">Soft Skills:</label>
+        <textarea id="soft-skills" name="soft-skills" rows="3" placeholder="e.g.,Communication, Decision making, Public speaking"></textarea>
+
+        <label for="proficiency-level">Proficiency Level:</label>
+        <select id="proficiency-level" name="proficiency-level" required>
+            <option value="">Select</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+            <option value="expert">Expert</option>
+        </select>
+    </fieldset>
+
+    <!-- Career Goals Section -->
+    <fieldset>
+        <legend>Career Goals</legend>
+        <label for="field-of-interest">Field of Interest:</label>
+        <input type="text" id="field-of-interest" name="field-of-interest" required placeholder="e.g., Software Development">
+
+        <label for="dream-companies">Dream Companies:</label>
+        <textarea id="dream-companies" name="dream-companies" rows="3" placeholder="List your dream companies"></textarea>
+    </fieldset>
+
+    <button type="submit">Submit</button>
+
+    </form>
+  </div>
+  <script>
+    // Toggle employment-related fields
+    const employedYes = document.querySelector('input[name="employed"][value="yes"]');
+    const employedNo = document.querySelector('input[name="employed"][value="no"]');
+
+    const employmentDetails = document.getElementById('employment-details');
+    const unemploymentDetails = document.getElementById('unemployment-details');
+
+    employedYes.addEventListener('change', function() {
+        employmentDetails.style.display = 'block';
+        unemploymentDetails.style.display = 'none';
+    });
+
+    employedNo.addEventListener('change', function() {
+        employmentDetails.style.display = 'none';
+        unemploymentDetails.style.display = 'block';
+    });
+
+    // Initialize visibility
+    employmentDetails.style.display = 'none';
+    unemploymentDetails.style.display = 'none';
+</script>
+</body>
+</html>
